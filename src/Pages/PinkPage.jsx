@@ -21,8 +21,9 @@ const images = [
 const PinkPage = () => {
   const containerRef = useRef();
   const navigate = useNavigate();
-  const [selectedImage, setSelectedImage] = useState(null); // 🆕 modal state
+  const [selectedImage, setSelectedImage] = useState(null);
 
+  // Fade-in animation for images
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -36,6 +37,17 @@ const PinkPage = () => {
     boxes.forEach(box => observer.observe(box));
 
     return () => observer.disconnect();
+  }, []);
+
+  // Close modal on ESC key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setSelectedImage(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   return (
@@ -56,7 +68,7 @@ const PinkPage = () => {
           {images.map((src, idx) => (
             <div
               key={idx}
-              onClick={() => setSelectedImage(src)} // 🆕 handle click
+              onClick={() => setSelectedImage(src)}
               className="fade-in opacity-0 translate-y-4 transition-all duration-700 ease-in-out rounded-xl overflow-hidden shadow border cursor-pointer"
             >
               <img
@@ -74,12 +86,25 @@ const PinkPage = () => {
         <img src="/color.png" alt="color dots" className="h-5" />
       </div>
 
-      {/* 🆕 Full-Screen Modal */}
+      {/* Full-Screen Modal with Close Button */}
       {selectedImage && (
         <div
           className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50"
-          onClick={() => setSelectedImage(null)} // Close on click
+          onClick={() => setSelectedImage(null)}
         >
+          {/* Close Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation(); // prevent closing modal when clicking button
+              setSelectedImage(null);
+            }}
+            className="absolute top-4 right-4 text-white text-3xl font-bold z-50 hover:text-red-400"
+            aria-label="Close"
+          >
+            &times;
+          </button>
+
+          {/* Fullscreen Image */}
           <img
             src={selectedImage}
             alt="Full size"
@@ -92,7 +117,6 @@ const PinkPage = () => {
 };
 
 export default PinkPage;
-
 
 // import React, { useEffect, useRef } from 'react';
 // import { useNavigate } from 'react-router-dom';

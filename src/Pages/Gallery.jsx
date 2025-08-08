@@ -18,11 +18,13 @@ const Gallery = () => {
   return (
     <div className="h-screen flex flex-col">
 
-      {/* 🔹 Top Bar (Sticky Top) */}
-      <div className="h-[10vh] bg-white px-4 flex items-center justify-between border-b z-10 sticky top-0">
-        <button onClick={()=> navigate('/')}><img src="side.png" alt="Back" className="w-4" /></button>
-        <h1 className="text-xl tracking-widest font-zendots mr-3">A STAR GATE</h1>
-        <div className="p-2"><img src="astar.png" className='w-10' /></div>
+      {/* Top Bar */}
+      <div className="h-16 flex justify-between items-center px-4 border-b sticky top-0 bg-white z-10">
+        <button onClick={() => navigate('/')}>
+          <img src="side.png" alt="Back" className="w-4" />
+        </button>
+        <h1 className="text-xl font-zendots">A STAR GATE</h1>
+        <img src="astar.png" alt="Flag" className="w-8" />
       </div>
 
       {/* 🔄 Scrollable Content */}
@@ -65,9 +67,9 @@ const Gallery = () => {
         ))}
       </div>
 
-      {/* 🔻 Bottom Bar (Sticky Bottom) */}
-      <div className="h-[8vh] bg-white border-t flex items-center justify-center sticky bottom-0 z-10">
-        <img src="color.png" />
+      {/* Bottom Dots */}
+      <div className="h-16 flex justify-center items-center border-t sticky bottom-0 bg-white z-10">
+        <img src="/color.png" alt="color dots" className="h-5" />
       </div>
     </div>
   );
