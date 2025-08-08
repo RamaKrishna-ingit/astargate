@@ -21,7 +21,7 @@ const images = [
 const PinkPage = () => {
   const containerRef = useRef();
   const navigate = useNavigate();
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null); // 🆕 modal state
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -56,7 +56,7 @@ const PinkPage = () => {
           {images.map((src, idx) => (
             <div
               key={idx}
-              onClick={() => setSelectedImage(src)}
+              onClick={() => setSelectedImage(src)} // 🆕 handle click
               className="fade-in opacity-0 translate-y-4 transition-all duration-700 ease-in-out rounded-xl overflow-hidden shadow border cursor-pointer"
             >
               <img
@@ -74,16 +74,16 @@ const PinkPage = () => {
         <img src="/color.png" alt="color dots" className="h-5" />
       </div>
 
-      {/* Fullscreen Modal */}
+      {/* 🆕 Full-Screen Modal */}
       {selectedImage && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
-          onClick={() => setSelectedImage(null)}
+          className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50"
+          onClick={() => setSelectedImage(null)} // Close on click
         >
           <img
             src={selectedImage}
-            alt="Full Size"
-            className="max-w-screen max-h-screen object-contain"
+            alt="Full size"
+            className="max-w-full max-h-full object-contain rounded-lg shadow-lg"
           />
         </div>
       )}
