@@ -66,8 +66,8 @@ const Gallery = () => {
       </div>
 
       {/* 🔻 Bottom Bar (Sticky Bottom) */}
-      <div className="h-[8vh] bg-white border-t flex items-center justify-center sticky bottom-0 z-10">
-        <img src="color.png" />
+      <div className="h-16 flex justify-center items-center border-t sticky bottom-0 bg-white z-10">
+        <img src="/color.png" alt="color dots" className="h-5" />
       </div>
     </div>
   );
